@@ -7,6 +7,9 @@ type UserRepository struct {
 }
 
 func (r *UserRepository) Create(u *model.User) (*model.User, error) {
+	if err := u.BeforeCreate(); err != nil {
+		return nil, err
+	}
 	if err := r.store.db.QueryRow(
 		"INSERT INTO users (email, encrypted_password) VALUES ($1, $2) RETURNING id",
 		u.Email,
@@ -19,5 +22,16 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 }
 
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
-	return nil, nil
+	u := &model.User{}
+	if err := r.store.db.QueryRow(
+		"SELECT id, email, encrypted_password from users WHERE email = $1",
+		email,
+	).Scan(&u.ID,
+		&u.Email,
+		&u.EncryptedPassword,
+	); err != nil {
+		return nil, err
+	}
+
+	return u, nil
 }
