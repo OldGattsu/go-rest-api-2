@@ -30,9 +30,9 @@ func (s *APIServer) Start() error {
 
 	s.configureRouter()
 
-	if err := s.configureStore(); err != nil {
-		return err
-	}
+	//if err := s.configureStore(); err != nil {
+	//	return err
+	//}
 
 	s.logger.Info("starting API server")
 
