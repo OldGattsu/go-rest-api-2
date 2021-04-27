@@ -2,11 +2,9 @@ package main
 
 import (
 	"flag"
-	"log"
-
 	"github.com/BurntSushi/toml"
-
 	"github.com/OldGattsu/go-rest-api/app/apiserver"
+	"log"
 )
 
 var (
@@ -26,8 +24,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s := apiserver.New(config)
-	if err := s.Start(); err != nil {
+	if err := apiserver.Start(config); err != nil {
 		log.Fatal(err)
 	}
 }

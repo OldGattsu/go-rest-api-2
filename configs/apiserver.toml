@@ -1,5 +1,4 @@
 bind_addr = ":5555"
 log_level = "debug"
-
-[store]
 database_url = "host=localhost dbname=restapi_dev sslmode=disable"
+session_key = "kXp2s5v8y/A?D(G+KbPeShVmYq3t6w9z$C&E)H@McQfTjWnZr4u7x!A%D*G-JaNdRgUkXp2s5v8y/B?E(H+MbPeShVmYq3t6w9z$C&F)J@NcRfTjWnZr4u7x!A%D*G-K"
